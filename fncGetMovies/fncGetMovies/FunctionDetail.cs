@@ -7,12 +7,12 @@ using Microsoft.Extensions.Logging;
 
 namespace fnGetMovies
 {
-    public class Function1
+    public class FunctionDetail
     {
-        private readonly ILogger<Function1> _logger;
+        private readonly ILogger<FunctionDetail> _logger;
         private readonly CosmosClient _cosmosClient;
 
-        public Function1(ILogger<Function1> logger, CosmosClient cosmosClient)
+        public FunctionDetail(ILogger<FunctionDetail> logger, CosmosClient cosmosClient)
         {
             _logger = logger;
             _cosmosClient = cosmosClient;
@@ -22,7 +22,7 @@ namespace fnGetMovies
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            var container = _cosmosClient.GetContainer("FixZRDB", "movies");
+            var container = _cosmosClient.GetContainer("FlixDB", "movies");
             var id = req.Query["id"];
             var sqlQueryText = $"SELECT * FROM c WHERE c.id = @id";
             var queryDefinition = new QueryDefinition(sqlQueryText).WithParameter("@id", id);

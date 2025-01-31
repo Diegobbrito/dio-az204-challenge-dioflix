@@ -6,11 +6,11 @@ using Newtonsoft.Json;
 
 namespace fncPostDatabase
 {
-    public class Function1
+    public class Function
     {
-        private readonly ILogger<Function1> _logger;
+        private readonly ILogger<Function> _logger;
 
-        public Function1(ILogger<Function1> logger)
+        public Function(ILogger<Function> logger)
         {
             _logger = logger;
         }
